@@ -9,10 +9,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
-    "swiper": "^6.4.5",
     "vue": "^3.0.0",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
