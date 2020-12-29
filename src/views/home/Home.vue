@@ -5,7 +5,12 @@
         <div>首页</div>
       </template>
     </nav-bar>
-    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
+    <scroll class="content"
+            ref="scroll"
+            :probe-type="3"
+            :pull-up-load="true"
+            @scroll="contentScroll"
+            @pullingUp="loadMore">
       <swiper :banners="banners"></swiper>
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :dKeyword="dKeyword"></feature-view>
@@ -85,6 +90,10 @@
         // position.y < -1000 ? this.isShow = true : this.isShow = false
         this.isShow = (-position.y) > 1000
       },
+      loadMore() {
+        this.getHomeGoods(this.currentType);
+        this.$refs.scroll.scroll.refresh();
+      },
       /*
       * 网络请求
       * */
@@ -96,12 +105,13 @@
           this.dKeyword = res.data.dKeyword.context;
         })
       },
+      //列表数据
       getHomeGoods(type) {
         const page = this.goods[type].page + 1;
         getHomeGoods(type, page).then(res => {
           this.goods[type].list.push(...res.data.list);
           this.goods[type].page += 1;
-          // console.log(this.goods[type].list);
+          this.$refs.scroll.finishPullUp()
         })
       }
     }

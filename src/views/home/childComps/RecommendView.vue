@@ -34,7 +34,8 @@
     flex: 1;
     text-align: center;
   }
-  .recommend-item img{
+
+  .recommend-item img {
     margin-bottom: 5px;
     width: 70%;
   }

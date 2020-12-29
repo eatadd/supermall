@@ -5,6 +5,8 @@
   --color: #666;
 }
 body{
+  max-width: 768px;
+  margin: 0 auto;
   background: #f0f0f0;
 }
 *{

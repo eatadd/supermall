@@ -20,6 +20,8 @@
 
 <style scoped>
   .nav-bar {
+    max-width: 768px;
+    margin: 0 auto;
     display: flex;
     line-height: 44px;
     box-shadow: 0 1px 10px rgba(100,100,100,.1);

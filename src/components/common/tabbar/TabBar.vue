@@ -12,6 +12,8 @@
 
 <style scoped>
   #tab-bar {
+    max-width: 768px;
+    margin: 0 auto;
     display: flex;
     position: fixed;
     left: 0;

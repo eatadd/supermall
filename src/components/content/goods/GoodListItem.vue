@@ -35,6 +35,7 @@
     height: 220px;
     border-radius: 4px;
     overflow: hidden;
+    margin-bottom: 10px;
   }
   .goods-item img{
     border-radius: 4px;
