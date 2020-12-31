@@ -1,6 +1,6 @@
 <template>
   <div class="swiper-slide">
-    1
+
   </div>
 </template>
 

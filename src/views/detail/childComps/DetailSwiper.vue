@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="outside">
-      <img :src="item.image" @load="imageLoad" v-show="index===activeIndex" v-for="(item, index) in banners" :key="index">
+      <img :src="item" @load="imageLoad" v-show="index===activeIndex" v-for="(item, index) in banners" :key="index">
       <ul class="picture">
         <li v-for="(item, index) in banners" :key="index" :class="{active:index===activeIndex}">
         </li>
@@ -42,12 +42,12 @@
   }
 </script>
 
-<style>
+<style scoped>
   .outside {
     margin: 0 auto;
     position: relative;
-    /*display: flex;*/
-    /*justify-content: center;*/
+    height: 300px;
+    overflow: hidden;
   }
 
   .outside img {

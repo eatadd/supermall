@@ -5,16 +5,23 @@
         <div>首页</div>
       </template>
     </nav-bar>
+    <tab-control ref="tabControl1"
+                 @tabClick="tabClick"
+                 :class="{tabControl: isTabFixed}"
+                 v-show="isTabFixed"
+                 :titles="['流行','新款','精选']"></tab-control>
     <scroll class="content"
             ref="scroll"
             :probe-type="3"
             :pull-up-load="true"
             @scroll="contentScroll"
             @pullingUp="loadMore">
-      <swiper :banners="banners"></swiper>
+      <swiper :banners="banners" @swapperImageLoad="swapperImageLoad"></swiper>
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :dKeyword="dKeyword"></feature-view>
-      <tab-control class="tab-control" @tabClick="tabClick" :titles="['流行','新款','精选']"></tab-control>
+      <tab-control ref="tabControl2"
+                   @tabClick="tabClick"
+                   :titles="['流行','新款','精选']"></tab-control>
       <good-list :goods="goods[currentType].list"></good-list>
     </scroll>
     <back-top v-show="isShow" @click.native="backCLick"/>
@@ -57,7 +64,9 @@
           'sell': {page: 0, list: []},
         },
         currentType: 'pop',
-        isShow: false
+        isShow: false,
+        tabOffsetTop: 0,
+        isTabFixed: false
       }
     },
     created() {
@@ -66,10 +75,17 @@
       this.getHomeGoods('new');
       this.getHomeGoods('sell');
     },
+    mounted() {
+
+    },
     methods: {
       /*
       * 事件监听
       * */
+      swapperImageLoad() {
+        // console.log(this.$refs.tabControl.$el.offsetTop);
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
+      },
       tabClick(index) {
         switch (index) {
           case 0:
@@ -82,13 +98,17 @@
             this.currentType = 'sell';
             break;
         }
+        this.$refs.tabControl1.currentIndex = index
+        this.$refs.tabControl2.currentIndex = index
       },
       backCLick() {
         this.$refs.scroll.scrollTo();
       },
       contentScroll(position) {
         // position.y < -1000 ? this.isShow = true : this.isShow = false
-        this.isShow = (-position.y) > 1000
+        this.isShow = (-position.y) > 1000;
+        this.isTabFixed = (-position.y) > this.tabOffsetTop;
+        // console.log(this.isTabFixed);
       },
       loadMore() {
         this.getHomeGoods(this.currentType);
@@ -120,26 +140,27 @@
 
 <style scoped>
   #home {
-    padding-top: 44px;
+    height: 100vh;
+    position: relative;
+  }
+
+  .tabControl {
+    position: relative;
+    z-index: 3;
   }
 
   .home-nav {
     background: var(--backgroundcolor);
     color: #FFF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 2;
-  }
-
-  .tab-control {
-    position: sticky;
-    top: 44px;
   }
 
   .content {
     height: calc(100vh - 93px);
+    position: fixed;
+    top: 44px;
+    width: 100%;
     overflow: hidden;
+    max-width: 768px;
   }
 </style>

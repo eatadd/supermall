@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <div class="goods-item-img">
       <img :src="goodsItem.show.img" alt="">
     </div>
@@ -23,6 +23,13 @@
           return {}
         }
       }
+    },
+    methods: {
+      itemClick() {
+        // this.$router.push({name: 'detail', params: {id: this.goodsItem.iid}});
+        // this.$router.push('/detail/' + this.goodsItem.iid)
+        this.$router.push({path: '/detail/' + this.goodsItem.iid})
+      }
     }
   }
 </script>
@@ -31,27 +38,32 @@
   .goods-item {
     padding-bottom: 10px;
   }
-  .goods-item-img{
+
+  .goods-item-img {
     height: 220px;
     border-radius: 4px;
     overflow: hidden;
     margin-bottom: 10px;
   }
-  .goods-item img{
+
+  .goods-item img {
     border-radius: 4px;
     width: 100%;
   }
-  .goods-info{
+
+  .goods-info {
     font-size: 12px;
     overflow: hidden;
   }
-  .goods-info p{
+
+  .goods-info p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 3px;
   }
-  .price{
+
+  .price {
     color: pink;
   }
 </style>
