@@ -8,7 +8,7 @@ const Detail = () => import('@/views/detail/Detail');
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/home'
   },
   {
     path: '/home',
@@ -29,7 +29,8 @@ const routes = [
   {
     path: '/detail/:iid',
     name: 'detail',
-    component: Detail
+    component: Detail,
+    meta: { MainTabBar: false}
   }
 ]
 

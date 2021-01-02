@@ -1,7 +1,10 @@
 <template>
   <div id="detail">
-    <detail-nav-bar></detail-nav-bar>
-    <detail-swiper :banners="banners"></detail-swiper>
+    <detail-nav-bar class="detail-nav"></detail-nav-bar>
+    <scroll class="detail-scroll">
+      <detail-swiper :banners="banners"></detail-swiper>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>1
+    </scroll>
   </div>
 </template>
 
@@ -10,6 +13,7 @@
   import DetailSwiper from './childComps/DetailSwiper'
 
   import {getDetail} from '@/network/detail'
+  import Scroll from "@/components/common/scroll/SCroll";
 
   export default {
     name: "Detail",
@@ -20,6 +24,7 @@
       }
     },
     components: {
+      Scroll,
       DetailNavBar,
       DetailSwiper
     },
@@ -38,5 +43,13 @@
 </script>
 
 <style scoped>
+  .detail-nav {
+    position: relative;
+    z-index: 3;
+    background-color: #fff;
+  }
 
+  .detail-scroll {
+    height: calc(100vh - 44px);
+  }
 </style>

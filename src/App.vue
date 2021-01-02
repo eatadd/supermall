@@ -7,7 +7,7 @@
         </keep-alive>
       </transition>
     </router-view>
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar v-show="$route.name!=='detail'"></main-tab-bar>
   </div>
 </template>
 <script>

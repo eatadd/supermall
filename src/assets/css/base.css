@@ -20,5 +20,6 @@ body {
 .close_return {
   width: 20px;
   height: 20px;
-  margin-top: 12.5px;
+  position: relative;
+  top: 4px;
 }
