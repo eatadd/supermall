@@ -3,7 +3,9 @@
     <detail-nav-bar class="detail-nav"></detail-nav-bar>
     <scroll class="detail-scroll">
       <detail-swiper :banners="banners"></detail-swiper>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>1
+      <p>{{itemInfo.title}}</p>
+      {{$store.state.cartList}}
+      <button @click="addToCart">添加到购物车</button>
     </scroll>
   </div>
 </template>
@@ -20,7 +22,8 @@
     data() {
       return {
         iid: null,
-        banners: []
+        banners: [],
+        itemInfo: {}
       }
     },
     components: {
@@ -31,13 +34,21 @@
     created() {
       this.iid = this.$route.params.iid;
       getDetail(this.iid).then(res => {
-        // console.log(res);
-        this.banners = res.result.itemInfo.topImages
+        // console.log(JSON.stringify(res.result.itemInfo));
+        this.itemInfo = res.result.itemInfo;
+        this.banners = res.result.itemInfo.topImages;
       }).catch(err => {
         console.log(err);
       })
     },
     mounted() {
+    },
+    methods: {
+      addToCart() {
+        let itemItem = {};
+        itemItem.iid = this.itemInfo.iid;
+        this.$store.commit('addCart', itemItem)
+      }
     }
   }
 </script>
