@@ -45,9 +45,10 @@
     },
     methods: {
       addToCart() {
-        let itemItem = {};
-        itemItem.iid = this.itemInfo.iid;
-        this.$store.commit('addCart', itemItem)
+        let produck = {};
+        produck.iid = this.itemInfo.iid;
+        // this.$store.commit('addCart', produck);
+        this.$store.dispatch('upDataCart',produck);
       }
     }
   }

@@ -4,6 +4,11 @@ export default createStore({
   state: {
     cartList: []
   },
+  getters: {
+    cartLength(state) {
+      return state.cartList.length
+    }
+  },
   mutations: {
     addCart(state, payLoad) {
       let loadPayLoad = null;
@@ -22,6 +27,10 @@ export default createStore({
       console.log(state.cartList);
     }
   },
-  actions: {},
+  actions: {
+    upDataCart(e, payload) {
+      e.commit('addCart', payload)
+    }
+  },
   modules: {}
 })

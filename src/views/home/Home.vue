@@ -19,6 +19,7 @@
       <swiper :banners="banners" @swapperImageLoad="swapperImageLoad"></swiper>
       <recommend-view :recommends="recommend"></recommend-view>
       <feature-view :dKeyword="dKeyword"></feature-view>
+      <h2>vuex:{{$store.state}}</h2>
       <tab-control ref="tabControl2"
                    @tabClick="tabClick"
                    :titles="['流行','新款','精选']"></tab-control>
